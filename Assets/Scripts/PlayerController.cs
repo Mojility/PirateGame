@@ -5,34 +5,41 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	private Rigidbody2D playerRB;
-
 	private Collider2D activeInteractive;
-
 	private Vector3 oldPosition;
 	private float speed = 0.25f;
 	private bool collisionActive;
+	private enum possiblePlayerStates {Active, InMenu};
+	private int playerState;
 
 	void Start () {
 		playerRB = GetComponent<Rigidbody2D>();
 		collisionActive = false;
+		playerState = (int)possiblePlayerStates.Active;
 	}
 	
 	void Update () {
-		if(Input.GetButton("Horizontal") && !collisionActive) {
-			oldPosition = playerRB.transform.position;
-			float horizontal = Input.GetAxis("Horizontal") * speed;
-			Vector3 movement = new Vector3(horizontal, 0, 0);
-			playerRB.MovePosition(playerRB.transform.position + movement);
-		}
-		if(Input.GetButton("Vertical") && !collisionActive) {
-			oldPosition = playerRB.transform.position;
-			float vertical = Input.GetAxis("Vertical") * speed;
-			Vector3 movement = new Vector3(0, vertical, 0);
-			playerRB.MovePosition(playerRB.transform.position + movement);
+		if(playerState == (int)possiblePlayerStates.Active) {
+			if(Input.GetButton("Horizontal") && !collisionActive) {
+				oldPosition = playerRB.transform.position;
+				float horizontal = Input.GetAxis("Horizontal") * speed;
+				Vector3 movement = new Vector3(horizontal, 0, 0);
+				playerRB.MovePosition(playerRB.transform.position + movement);
+			}
+			if(Input.GetButton("Vertical") && !collisionActive) {
+				oldPosition = playerRB.transform.position;
+				float vertical = Input.GetAxis("Vertical") * speed;
+				Vector3 movement = new Vector3(0, vertical, 0);
+				playerRB.MovePosition(playerRB.transform.position + movement);
+			}
 		}
 		if(Input.GetKeyDown(KeyCode.Return)) {
-			if(activeInteractive != null) {
+			if(activeInteractive != null && playerState != (int)possiblePlayerStates.InMenu) {
 				Debug.Log("HI!!!");
+				playerState = (int)possiblePlayerStates.InMenu;
+			}
+			else if(playerState == (int)possiblePlayerStates.InMenu) {
+				playerState = (int)possiblePlayerStates.Active;
 			}
 		}
 	}
@@ -42,10 +49,8 @@ public class PlayerController : MonoBehaviour {
 			activeInteractive = other;
 		}
 		if(other.tag == "SolidObject") {
-			if(oldPosition != null) {
-				playerRB.MovePosition(oldPosition);
-				collisionActive = true;
-			}
+			playerRB.MovePosition(oldPosition);
+			collisionActive = true;
 		}
 	}
 	void OnTriggerExit2D(Collider2D other) {
