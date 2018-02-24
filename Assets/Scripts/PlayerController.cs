@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.tag == "Interactive") {
 			activeInteractive = other;
+			Debug.Log("other name = " + other.name);
+			Debug.Log("active name = " + activeInteractive);
 		}
 		if(other.tag == "SolidObject") {
 			if(oldPosition != null) {
@@ -50,7 +52,9 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	void OnTriggerExit2D(Collider2D other) {
-		activeInteractive = null;
+		if(other.tag == "Interactive") {
+			activeInteractive = null;
+		}
 		if(other.tag == "SolidObject") {
 			collisionActive = false;
 		}
