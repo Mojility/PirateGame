@@ -24,6 +24,8 @@ public class MenuRenderer : MonoBehaviour {
 	
 
 	void Update () {
-		
+		if(Input.GetKeyDown(KeyCode.Return)) {
+			hideCanvas();
+		}
 	}
 }
