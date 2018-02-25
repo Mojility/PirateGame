@@ -28,6 +28,7 @@ public class Interactable {
         this.menus = menus;
         goalOffered = goal;
     }
+    public Interactable() {}
 
     public Menu currentMenu() {
         return this.menus[currentMenuIndex];
