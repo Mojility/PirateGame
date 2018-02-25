@@ -51,24 +51,24 @@ public class InteractableTests {
 	
 	[Test]
 	public void PotentialCrewmanPresentsFirstMenu() {
-		Assert.AreEqual(_potentialCrewman.currentMenu(), _firstMenu);
 		Assert.IsFalse(_potentialCrewman.isGoalMet());
+		Assert.AreEqual(_potentialCrewman.currentMenu(), _firstMenu);
 	}
 
 	[Test]
 	public void PotentialCrewmanAdvancesWithFirstMenuOptionOne() {
 		_potentialCrewman.select(_firstMenu.options[0]);
 
-		Assert.AreEqual(_potentialCrewman.currentMenu(), _firstMenu);
 		Assert.IsFalse(_potentialCrewman.isGoalMet());
+		Assert.AreEqual(_potentialCrewman.currentMenu(), _firstMenu);
 	}
 
 	[Test]
 	public void PotentialCrewmanDoesNotAdvanceWithMenuOptionTwo() {
 		_potentialCrewman.select(_firstMenu.options[1]);
 
-		Assert.AreEqual(_potentialCrewman.currentMenu(), _secondMenu);
 		Assert.IsFalse(_potentialCrewman.isGoalMet());
+		Assert.AreEqual(_potentialCrewman.currentMenu(), _secondMenu);
 	}
 
 	[Test]

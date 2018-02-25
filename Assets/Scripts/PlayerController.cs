@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	private Rigidbody2D playerRB;
-	private Collider2D activeInteractive;
+	private Collider2D possibleInteractive;
 	private Vector3 oldPosition;
 	private float speed = 0.25f;
 	private bool collisionActive;
 	private enum possiblePlayerStates {Active, InMenu};
 	private int playerState;
 
+	public GameEngineController gameEngineController;
+	
 	void Start () {
 		playerRB = GetComponent<Rigidbody2D>();
 		collisionActive = false;
@@ -34,9 +36,9 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 		if(Input.GetKeyDown(KeyCode.Return)) {
-			if(activeInteractive != null && playerState != (int)possiblePlayerStates.InMenu) {
-				RileyController rileyController = activeInteractive.GetComponentInParent<RileyController>();
-				rileyController.menuRenderer.showCanvas(rileyController.currentMenu());
+			if(possibleInteractive != null && playerState != (int)possiblePlayerStates.InMenu) {
+				InteractableController interactableController = possibleInteractive.GetComponentInParent<InteractableController>();
+				gameEngineController.startInteraction(interactableController);
 				playerState = (int)possiblePlayerStates.InMenu;
 			}
 			else if(playerState == (int)possiblePlayerStates.InMenu) {
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.tag == "Interactive") {
-			activeInteractive = other;
+			possibleInteractive = other;
 		}
 		if(other.tag == "SolidObject") {
 			playerRB.MovePosition(oldPosition);
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void OnTriggerExit2D(Collider2D other) {
 		if(other.tag == "Interactive") {
-			activeInteractive = null;
+			possibleInteractive = null;
 		}
 		if(other.tag == "SolidObject") {
 			collisionActive = false;

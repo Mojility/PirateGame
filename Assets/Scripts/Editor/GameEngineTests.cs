@@ -23,14 +23,23 @@ public class GameEngineTests {
 		
 		_goal = new Goal("MakeFriend");
 		_potentialCrewman = new Interactable(new Menu[] { _firstMenu }, _goal);
-		_chapter1 = new Chapter1(new Interactable[] { _potentialCrewman });
+		_chapter1 = new Chapter(new Interactable[] { _potentialCrewman });
 		
 		_gameEngine = new GameEngine(new Chapter[] { _chapter1 });
 	}
 	
 	[Test]
 	public void GameEngineStartsOnFirstChapter() {
-		Assert.AreEqual(_gameEngine.currentChapter, _chapter1);
+		Assert.AreEqual(_chapter1, _gameEngine.currentChapter);
 	}
 
+
+	[Test]
+	public void GameEngineCanStartInteraction() {
+		// When PlayerController encounters an InteractableController
+		// Then the PlayerController starts the GameEngine to start the interaction
+		_gameEngine.startInteraction(_potentialCrewman);
+		
+		Assert.AreEqual(_firstMenu, _gameEngine.currentInteractableMenu());
+	}
 }

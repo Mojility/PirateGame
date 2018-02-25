@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RileyController : MonoBehaviour {
-
-	private Riley riley;
-	public MenuRenderer menuRenderer;
-
+public class RileyController : InteractableController {
+	
 	void Start () {
-		riley = new Riley();
-	}
-
-	public Menu currentMenu() {
-		return riley.currentMenu();
+		interactable = new Riley();
 	}
 
 	void Update () {

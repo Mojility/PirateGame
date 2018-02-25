@@ -34,8 +34,8 @@ public class Interactable {
         return this.menus[currentMenuIndex];
     }
     
-    public void select(MenuOption firstMenuOption) {
-        if (firstMenuOption.action == MenuOption.Action.Progress) {
+    public void select(MenuOption option) {
+        if (option.action == MenuOption.Action.Progress) {
             currentMenuIndex++;
         }
     }
@@ -45,8 +45,6 @@ public class Interactable {
     }
 }
 
-public interface Chapter { }
-
 public class Goal {
     private readonly string _makefriend;
 
@@ -55,20 +53,12 @@ public class Goal {
     }
 }
 
-public class Chapter1 : Chapter {
-    private readonly Interactable[] _interactables;
-
-    public Chapter1(Interactable[] interactables) {
-        _interactables = interactables;
-    }
-
-}
-
 public class GameEngine {
     private readonly Chapter[] _chapters;
 
     public Chapter currentChapter;
-    
+    private Interactable _currentInteractable;
+
     public GameEngine(Chapter[] chapters) {
         _chapters = chapters;
 
@@ -77,5 +67,13 @@ public class GameEngine {
 
     public Menu interact(Interactable potentialCrewman) {
         return potentialCrewman.currentMenu();
+    }
+
+    public void startInteraction(Interactable interactable) {
+        _currentInteractable = interactable;
+    }
+
+    public Menu currentInteractableMenu() {
+        return _currentInteractable.currentMenu();
     }
 }
