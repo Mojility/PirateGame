@@ -50,9 +50,9 @@ public class Riley : Interactable {
 
         var otherMenus = new Menu[] {
             new Menu(
-                "Riley says, 'We gettin' off this island or what?'",
+                "Riley says, 'I know where there's a boat on this island, ready to go?'",
                 new MenuOption[] {
-                    new MenuOption() {value = "Let's find a ship!", action = MenuOption.Action.Progress}
+                    new MenuOption() {value = "Let's find that boat!", action = MenuOption.Action.Progress}
                 })
         };
         
