@@ -2,7 +2,7 @@
 
 public class InteractableController : MonoBehaviour {
 	
-	protected Interactable interactable;
+	public Interactable interactable;
 
 	void Start () {
 		
@@ -17,6 +17,6 @@ public class InteractableController : MonoBehaviour {
 	}
 
 	public void select(MenuOption option) {
-		interactable.@select(option);
+		interactable.select(option);
 	}
 }

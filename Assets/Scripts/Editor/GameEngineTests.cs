@@ -17,7 +17,7 @@ public class GameEngineTests {
 	[SetUp]
 	public void SetUp() {
 		_firstMenu = new Menu("You see a disheveled stranger.", new MenuOption[] {
-			new MenuOption() { value = "Ignore them.", action = MenuOption.Action.DoNothing },
+			new MenuOption() { value = "Ignore them.", action = MenuOption.Action.Dismiss },
 			new MenuOption() { value = "Ask, 'How did you end up here?'", action = MenuOption.Action.Progress }
 		});
 		

@@ -15,34 +15,7 @@ public class MenuOption {
     public string value;
     public Action action;
 
-    public enum Action { DoNothing, Progress }
-}
-
-public class Interactable {
-    public Menu[] menus;
-    public Goal goalOffered;
-
-    private int currentMenuIndex = 0;
-
-    public Interactable(Menu[] menus, Goal goal) {
-        this.menus = menus;
-        goalOffered = goal;
-    }
-    public Interactable() {}
-
-    public Menu currentMenu() {
-        return this.menus[currentMenuIndex];
-    }
-    
-    public void select(MenuOption option) {
-        if (option.action == MenuOption.Action.Progress) {
-            currentMenuIndex++;
-        }
-    }
-
-    public bool isGoalMet() {
-        return currentMenuIndex >= menus.Length - 1;
-    }
+    public enum Action { Dismiss, Progress }
 }
 
 public class Goal {
@@ -65,8 +38,8 @@ public class GameEngine {
         currentChapter = _chapters[0];
     }
 
-    public Menu interact(Interactable potentialCrewman) {
-        return potentialCrewman.currentMenu();
+    public Menu interact(Interactable interactable) {
+        return interactable.currentMenu();
     }
 
     public void startInteraction(Interactable interactable) {
@@ -75,5 +48,9 @@ public class GameEngine {
 
     public Menu currentInteractableMenu() {
         return _currentInteractable.currentMenu();
+    }
+
+    public MenuOption.Action select(int selectedOptionIndex) {
+        return _currentInteractable.select(currentInteractableMenu().options[selectedOptionIndex]);
     }
 }

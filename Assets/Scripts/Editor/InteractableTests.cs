@@ -16,7 +16,7 @@ public class InteractableTests {
 		_firstMenu = new Menu(
 			"You see a disheveled stranger.",
 			new MenuOption[] {
-				new MenuOption() { value = "Ignore them.", action = MenuOption.Action.DoNothing },
+				new MenuOption() { value = "Ignore them.", action = MenuOption.Action.Dismiss },
 				new MenuOption() { value = "Ask, 'How did you end up here?'", action = MenuOption.Action.Progress }
 			});
 		
@@ -29,7 +29,7 @@ public class InteractableTests {
 		_thirdMenu = new Menu(
 			"The stranger says, 'That's between me and my employer.'",
 			new MenuOption[] {
-				new MenuOption() { value = "Fight", action = MenuOption.Action.DoNothing },
+				new MenuOption() { value = "Fight", action = MenuOption.Action.Dismiss },
 				new MenuOption() { value = "Say, 'How would you like a new job as my first mate?'", action = MenuOption.Action.Progress }, 				
 			});
 
