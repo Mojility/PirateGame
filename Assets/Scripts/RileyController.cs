@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RileyConroller : MonoBehaviour {
+public class RileyController : MonoBehaviour {
 
 	private Riley riley;
 	public MenuRenderer menuRenderer;

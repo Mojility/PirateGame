@@ -8,8 +8,15 @@ public class MenuRenderer : MonoBehaviour {
 	private Canvas canvas;
 	void Start () {
 		canvas = GetComponentInChildren(typeof(Canvas)) as Canvas;
+		hideCanvas();
+	}
 
+	public void hideCanvas() {
 		canvas.enabled = false;
+	}
+
+	public void showCanvas() {
+		canvas.enabled = true;
 	}
 	
 

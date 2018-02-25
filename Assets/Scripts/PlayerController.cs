@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour {
 		}
 		if(Input.GetKeyDown(KeyCode.Return)) {
 			if(activeInteractive != null && playerState != (int)possiblePlayerStates.InMenu) {
-				Debug.Log("HI!!!");
+				RileyController rileyController = activeInteractive.GetComponentInParent<RileyController>();
+				rileyController.menuRenderer.showCanvas();
 				playerState = (int)possiblePlayerStates.InMenu;
 			}
 			else if(playerState == (int)possiblePlayerStates.InMenu) {
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 			collisionActive = true;
 		}
 	}
+	
 	void OnTriggerExit2D(Collider2D other) {
 		if(other.tag == "Interactive") {
 			activeInteractive = null;
