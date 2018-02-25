@@ -39,7 +39,9 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Interactive") {
             InteractableController interactableController = other.GetComponentInParent<InteractableController>();
-            gameEngineController.noticedInteractable(interactableController);
+//            if (!interactableController.interactable.isGoalMet()) {
+                gameEngineController.noticedInteractable(interactableController);                
+//            }
         }
 
         if (other.tag == "SolidObject") {

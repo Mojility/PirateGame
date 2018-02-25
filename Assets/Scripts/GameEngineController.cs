@@ -60,15 +60,22 @@ public class GameEngineController : MonoBehaviour {
     public void lostInteractable() {
         noticedInteractableController = null;
     }
-    
+
     public void startInteraction() {
-        _gameEngine.startInteraction(noticedInteractableController.interactable);
-        menuRenderer.showCanvas(_gameEngine.currentInteractableMenu());
+        if (noticedInteractableController != null) {
+            _gameEngine.startInteraction(noticedInteractableController.interactable);
+            menuRenderer.showCanvas(_gameEngine.currentInteractableMenu());
+        }
     }
 
     public MenuOption.Action select(int selectedOptionIndex) {
         MenuOption.Action action = _gameEngine.select(selectedOptionIndex);
-        menuRenderer.showCanvas(_gameEngine.currentInteractableMenu());
+        if (noticedInteractableController.interactable.isGoalMet()) {
+            menuRenderer.dismissMenu();
+        } else {
+            menuRenderer.showCanvas(_gameEngine.currentInteractableMenu());
+        }
+
         return action;
     }
 }

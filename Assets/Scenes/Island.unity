@@ -1886,6 +1886,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuRenderer: {fileID: 1712866283}
+  noticedInteractableController: {fileID: 0}
+  playerController: {fileID: 1447776236}
 --- !u!4 &1270955497
 Transform:
   m_ObjectHideFlags: 0
@@ -2239,6 +2241,7 @@ MonoBehaviour:
   - {fileID: 1380216427}
   - {fileID: 293193243}
   gameEngineController: {fileID: 1270955496}
+  menuIsActive: 0
 --- !u!4 &1712866284
 Transform:
   m_ObjectHideFlags: 0

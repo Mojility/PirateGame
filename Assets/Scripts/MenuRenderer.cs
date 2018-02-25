@@ -21,6 +21,7 @@ public class MenuRenderer : MonoBehaviour {
     public void dismissMenu() {
         canvas.enabled = false;
         menuIsActive = false;
+        gameEngineController.lostInteractable();
     }
 
     public void showCanvas(Menu menu) {

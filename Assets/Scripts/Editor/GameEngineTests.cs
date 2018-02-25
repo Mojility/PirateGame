@@ -22,7 +22,8 @@ public class GameEngineTests {
 		});
 		
 		_goal = new Goal("MakeFriend");
-		_potentialCrewman = new Interactable(new Menu[] { _firstMenu }, _goal);
+		_potentialCrewman = new Interactable();
+		_potentialCrewman.addMenuSet(new Menu[] { _firstMenu }, new Goal[] {}, _goal);
 		_chapter1 = new Chapter(new Interactable[] { _potentialCrewman });
 		
 		_gameEngine = new GameEngine(new Chapter[] { _chapter1 });

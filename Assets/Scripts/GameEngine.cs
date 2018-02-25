@@ -1,6 +1,10 @@
-﻿public class GameEngine {
+﻿using System.Collections.Generic;
+
+public class GameEngine {
     private readonly Chapter[] _chapters;
 
+    private List<Goal> goalsMet = new List<Goal>();
+    
     public Chapter currentChapter;
     private Interactable _currentInteractable;
 
@@ -11,7 +15,7 @@
     }
 
     public Menu interact(Interactable interactable) {
-        return interactable.currentMenu();
+        return interactable.currentMenu(goalsMet.ToArray());
     }
 
     public void startInteraction(Interactable interactable) {
@@ -19,10 +23,14 @@
     }
 
     public Menu currentInteractableMenu() {
-        return _currentInteractable.currentMenu();
+        return _currentInteractable.currentMenu(goalsMet.ToArray());
     }
 
     public MenuOption.Action select(int selectedOptionIndex) {
-        return _currentInteractable.select(currentInteractableMenu().options[selectedOptionIndex]);
+        MenuOption.Action action = _currentInteractable.@select(currentInteractableMenu().options[selectedOptionIndex]);
+        if (_currentInteractable.isGoalMet()) {
+            goalsMet.Add(_currentInteractable.currentGoalOffered());
+        }
+        return action;
     }
 }
