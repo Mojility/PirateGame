@@ -5,6 +5,7 @@ using UnityEngine;
 public class RileyConroller : MonoBehaviour {
 
 	private Riley riley;
+	public MenuRenderer menuRenderer;
 
 	void Start () {
 		riley = new Riley();
