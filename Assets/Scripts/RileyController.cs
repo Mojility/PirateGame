@@ -10,7 +10,11 @@ public class RileyController : MonoBehaviour {
 	void Start () {
 		riley = new Riley();
 	}
-	
+
+	public Menu currentMenu() {
+		return riley.currentMenu();
+	}
+
 	void Update () {
 		
 	}

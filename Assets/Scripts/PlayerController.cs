@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Return)) {
 			if(activeInteractive != null && playerState != (int)possiblePlayerStates.InMenu) {
 				RileyController rileyController = activeInteractive.GetComponentInParent<RileyController>();
-				rileyController.menuRenderer.showCanvas();
+				rileyController.menuRenderer.showCanvas(rileyController.currentMenu());
 				playerState = (int)possiblePlayerStates.InMenu;
 			}
 			else if(playerState == (int)possiblePlayerStates.InMenu) {

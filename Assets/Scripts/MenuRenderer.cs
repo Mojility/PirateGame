@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class MenuRenderer : MonoBehaviour {
 
 	private Canvas canvas;
+	private Text menuText;
 	void Start () {
-		canvas = GetComponentInChildren(typeof(Canvas)) as Canvas;
+		canvas = GetComponentInChildren<Canvas>();
+		menuText = GetComponentInChildren<Text>();
 		hideCanvas();
 	}
 
@@ -15,8 +17,9 @@ public class MenuRenderer : MonoBehaviour {
 		canvas.enabled = false;
 	}
 
-	public void showCanvas() {
+	public void showCanvas(Menu newMenu) {
 		canvas.enabled = true;
+		menuText.text = newMenu.introduction;
 	}
 	
 
